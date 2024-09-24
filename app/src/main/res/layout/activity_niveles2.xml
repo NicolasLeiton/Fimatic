@@ -63,13 +63,12 @@
                 android:textColor="@color/black"
                 android:textSize="65sp" />
 
-            <ImageView
-                android:id="@+id/fokinlinea1"
-                android:layout_width="match_parent"
+            <View
+                android:layout_width="8dp"
                 android:layout_height="25dp"
+                android:background="@color/white"
                 android:alpha="0.6"
-                android:scaleX="2"
-                app:srcCompat="@drawable/line" />
+                />
 
             <Button
                 android:id="@+id/bot_lv2"
@@ -84,13 +83,12 @@
                 android:textColor="@color/black"
                 android:textSize="65sp" />
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="match_parent"
+            <View
+                android:layout_width="8dp"
                 android:layout_height="25dp"
+                android:background="@color/white"
                 android:alpha="0.6"
-                android:scaleX="2"
-                app:srcCompat="@drawable/line" />
+                />
 
             <Button
                 android:id="@+id/bot_lv3"

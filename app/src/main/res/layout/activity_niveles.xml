@@ -74,14 +74,11 @@
                 android:text="1"
                 android:textColor="@color/black"
                 android:textSize="65sp" />
-
-            <ImageView
-                android:id="@+id/fokinlinea1"
-                android:layout_width="match_parent"
+            <View
+                android:layout_width="8dp"
                 android:layout_height="25dp"
-                android:scaleX="2"
-                app:srcCompat="@drawable/line" />
-
+                android:background="@color/white"
+                />
             <Button
                 android:id="@+id/bot_lv2"
                 android:layout_width="150dp"
@@ -94,12 +91,12 @@
                 android:textColor="@color/black"
                 android:textSize="65sp" />
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="match_parent"
+
+            <View
+                android:layout_width="8dp"
                 android:layout_height="25dp"
-                android:scaleX="2"
-                app:srcCompat="@drawable/line" />
+                android:background="@color/white"
+                />
 
             <Button
                 android:id="@+id/bot_lv3"
