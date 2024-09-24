@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="back_color">#272932</color>
+    <color name="back_color2">#1E1E1E</color>
+    <color name="purpura">#B39EE6</color>
+    <color name="purpura_2">#966CFC</color>
+    <color name="purpura_3">#8C49E1</color>
+
+    <color name="cyan">#BCD2EE</color>
+    <color name="cyan_2">#81B2F0</color>
+    <color name="cyan_3">#3686EC</color>
+</resources>

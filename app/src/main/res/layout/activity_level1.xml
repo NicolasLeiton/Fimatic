@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color2"
+    tools:context=".Level1">
+
+    <ImageView
+        android:id="@+id/Piso_1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="380dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/piso" />
+
+    <ImageView
+        android:id="@+id/Piso_3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/Piso_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/piso" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_weight="1"
+        android:background="@color/back_color2"
+        android:onClick="ir_home"
+        android:src="@drawable/atras2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/Fragment_bloques"
+        android:name="com.utadeo.fimatic.Bloques"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment_bloques" />
+
+    <ImageView
+        android:id="@+id/Piso_2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/Piso_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/piso" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Piso_3"
+        app:layout_constraintEnd_toEndOf="@+id/Piso_3"
+        app:layout_constraintStart_toStartOf="@+id/Piso_3"
+        app:layout_constraintTop_toTopOf="@+id/Piso_3"
+        app:srcCompat="@drawable/objective_tile" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="74dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Piso_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/robot_3dgreen" />
+</androidx.constraintlayout.widget.ConstraintLayout>

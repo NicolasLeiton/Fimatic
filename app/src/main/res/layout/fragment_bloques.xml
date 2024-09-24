@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    tools:context=".Bloques">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/white"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_bloques"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iceberg"
+                android:text="Bloques"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white_block" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_bloques2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/iceberg"
+                    android:text="Tu lógica"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/back_color"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/iniciar" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
