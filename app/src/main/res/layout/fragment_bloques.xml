@@ -38,10 +38,20 @@
                 android:textSize="30sp" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/Img_whiteBlock"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:contentDescription="Adelante"
                 android:src="@drawable/white_block" />
+
+            <ImageView
+                android:id="@+id/Img_rightBlock"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="Derecha"
+                android:src="@drawable/yellow_block"
+                android:visibility="visible" />
 
         </LinearLayout>
 
@@ -51,6 +61,7 @@
             android:background="@color/white" />
 
         <LinearLayout
+            android:id="@+id/sandbox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
@@ -74,15 +85,39 @@
 
                 <ImageButton
                     android:id="@+id/imageButton"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/back_color"
                     android:scaleType="fitCenter"
                     android:src="@drawable/iniciar" />
+
             </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/stackArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/green_block" />
+                </LinearLayout>
+            </ScrollView>
+
 
         </LinearLayout>
 

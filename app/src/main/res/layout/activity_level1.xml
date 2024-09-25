@@ -40,7 +40,6 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/Fragment_bloques"
-        android:name="com.utadeo.fimatic.Bloques"
         android:layout_width="fill_parent"
         android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
