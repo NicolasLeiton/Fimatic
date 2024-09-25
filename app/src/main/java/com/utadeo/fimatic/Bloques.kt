@@ -67,15 +67,20 @@ class Bloques : Fragment() {
 
         // Referencias a los bloques (imágenes) y al área de apilado
         val block1: ImageView = view.findViewById(R.id.Img_whiteBlock)
-        val block2: ImageView = view.findViewById(R.id.Img_rightBlock)
+
+
         stackArea = view.findViewById(R.id.stackArea)
 
         // Establecer la escucha de arrastre para el área de apilado
         stackArea.setOnDragListener(DragListener())
-
+        if (num_bloques=="2"){
+            val block2: ImageView = view.findViewById(R.id.Img_rightBlock)
+            block2.setVisibility(View.VISIBLE)
+            block2.setOnTouchListener(TouchListener())
+        }
         // Habilitar arrastrar para cada bloque
         block1.setOnTouchListener(TouchListener())
-        block2.setOnTouchListener(TouchListener())
+
     }
 
     // Listener para manejar el evento de arrastre cuando se toca el bloque

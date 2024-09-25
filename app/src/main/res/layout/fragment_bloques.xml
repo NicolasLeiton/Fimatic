@@ -51,7 +51,7 @@
                 android:layout_marginTop="20dp"
                 android:contentDescription="Derecha"
                 android:src="@drawable/yellow_block"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </LinearLayout>
 
