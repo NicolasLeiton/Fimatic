@@ -1,5 +1,6 @@
 package com.utadeo.fimatic
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +13,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
+import android.util.TypedValue
+import android.widget.ImageView
 
 class Level1 : AppCompatActivity() {
 
     private lateinit var viewModel: SharedViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,6 +36,7 @@ class Level1 : AppCompatActivity() {
             add<Bloques>(R.id.Fragment_bloques, args = bundle)
         }
 
+        val carro: ImageView = findViewById(R.id.carImg)
 
         // Obtener el ViewModel compartido
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
@@ -39,23 +44,42 @@ class Level1 : AppCompatActivity() {
         // Observar los cambios en los datos
         viewModel.sharedData.observe(this) { data ->
             // Hacer algo con los datos
-            mover_carro(data)
+            mover_carro(data, carro)
         }
     }
 
 
-    fun ir_home(view: View){
-        val home= Intent(this, MainActivity::class.java)
+    fun ir_atras(view: View){
+        val home= Intent(this, Niveles::class.java)
         startActivity(home)
     }
 
-    fun mover_carro(instrucciones:String){
+    fun mover_carro(instrucciones:String, carro:ImageView){
         val list_inst = instrucciones.split(" ")
+
 
         for((i, paso) in list_inst.withIndex()){
             Log.d("Level1", "Paso numero ${i}: ${paso}")
+            if(paso=="Adelante"){
+                mover_adelante(carro)
+
+            }
         }
 
+
+
+
+    }
+    fun mover_adelante(carro:ImageView){
+        val distanceInPixels = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            90f,
+            resources.displayMetrics
+        )
+
+        val animator = ObjectAnimator.ofFloat(carro, "translationY", carro.translationY, carro.translationY - distanceInPixels)
+        animator.duration = 1000 // Establecer la duración de la animación
+        animator.start()
     }
 
 

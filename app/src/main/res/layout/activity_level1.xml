@@ -33,10 +33,13 @@
         android:layout_height="64dp"
         android:layout_weight="1"
         android:background="@color/back_color2"
-        android:onClick="ir_home"
+        android:onClick="ir_atras"
         android:src="@drawable/atras2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Boton ir atras"
+        />
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/Fragment_bloques"
@@ -67,7 +70,7 @@
         app:srcCompat="@drawable/objective_tile" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/carImg"
         android:layout_width="74dp"
         android:layout_height="70dp"
         android:layout_marginBottom="8dp"
