@@ -84,7 +84,7 @@
                     android:textSize="30sp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/Start_Button"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginLeft="40dp"

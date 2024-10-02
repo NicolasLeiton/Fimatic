@@ -6,10 +6,13 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.*
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-
+import android.util.Log
 
 
 const val ARG_PARAM1 = "param1"
@@ -23,6 +26,8 @@ class Bloques : Fragment() {
     private var list_blocks : MutableMap<Int,String > = mutableMapOf()
     private var id_count:Int = 0
     private lateinit var stackArea: LinearLayout
+
+    private lateinit var viewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +70,18 @@ class Bloques : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         // Referencias a los bloques (imágenes) y al área de apilado
         val block1: ImageView = view.findViewById(R.id.Img_whiteBlock)
+        val startBut: ImageButton = view.findViewById(R.id.Start_Button)
+
+        // Obtener el ViewModel compartido
+        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+
+        // Actualizar los datos cuando sea necesario
+        startBut.setOnClickListener {
+            viewModel.setData(crear_instrucciones())
+        }
 
 
         stackArea = view.findViewById(R.id.stackArea)
@@ -155,5 +170,15 @@ class Bloques : Fragment() {
                 else -> return false
             }
         }
+    }
+
+    fun crear_instrucciones(): String {
+        var instrucciones:String =""
+        for (i in list_blocks.values){
+            instrucciones += i + " "
+        }
+        instrucciones= instrucciones.dropLast(1)
+        return instrucciones
+
     }
 }
