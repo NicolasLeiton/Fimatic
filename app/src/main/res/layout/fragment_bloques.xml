@@ -32,6 +32,7 @@
                 android:id="@+id/txt_bloques"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/iceberg"
                 android:text="Bloques"
                 android:textColor="@color/white"
@@ -71,7 +72,7 @@
                 android:id="@+id/center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="center|right"
                 android:orientation="horizontal">
 
                 <TextView
@@ -85,8 +86,8 @@
 
                 <ImageButton
                     android:id="@+id/Start_Button"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"

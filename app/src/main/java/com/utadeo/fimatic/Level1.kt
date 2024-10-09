@@ -14,11 +14,16 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import android.util.TypedValue
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
+import kotlinx.coroutines.*
 
 class Level1 : AppCompatActivity() {
 
     private lateinit var viewModel: SharedViewModel
+    private var playing = false
+    private var animating = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,33 +35,58 @@ class Level1 : AppCompatActivity() {
             insets
         }
 
-        val bundle = bundleOf(ARG_PARAM1 to "HOLA", ARG_PARAM2 to "2")
+        val bundle = bundleOf(ARG_PARAM1 to "HOLA", ARG_PARAM2 to "1")
         supportFragmentManager.commit{
             setReorderingAllowed(true)
             add<Bloques>(R.id.Fragment_bloques, args = bundle)
         }
 
         val carro: ImageView = findViewById(R.id.carImg)
+        val piso_inicial:ImageView = findViewById(R.id.Piso_1)
 
-        // Obtener el ViewModel compartido
+
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
-
         // Observar los cambios en los datos
         viewModel.sharedData.observe(this) { data ->
-            // Hacer algo con los datos
-            mover_carro(data, carro)
+            GlobalScope.launch {
+                if (playing==false){
+                    playing = true
+                    mover_carro(data, carro)
+                }
+                else if(animating==false){
+                    reinicar(carro, piso_inicial)
+                }
+
+
+
+            }
         }
     }
 
+    fun Int.dpToPx(): Int {
+        return (this * resources.displayMetrics.density).toInt()
+    }
 
     fun ir_atras(view: View){
         val home= Intent(this, Niveles::class.java)
         startActivity(home)
     }
 
-    fun mover_carro(instrucciones:String, carro:ImageView){
-        val list_inst = instrucciones.split(" ")
+    fun reinicar(carro:ImageView, inico:ImageView){
+        val location = IntArray(2)
+        inico.getLocationOnScreen(location)
+        location[1]+=9.dpToPx()
+        location[0]+=8.dpToPx()
 
+        // Mover el carro a la casilla original
+        carro.x = location[0].toFloat()
+        carro.y = location[1].toFloat()
+        playing = false
+    }
+
+    suspend fun mover_carro(instrucciones:String, carro:ImageView){
+        animating = true
+        val list_inst = instrucciones.split(" ")
 
         for((i, paso) in list_inst.withIndex()){
             Log.d("Level1", "Paso numero ${i}: ${paso}")
@@ -65,22 +95,21 @@ class Level1 : AppCompatActivity() {
 
             }
         }
-
-
-
+        animating=false
 
     }
-    fun mover_adelante(carro:ImageView){
-        val distanceInPixels = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            90f,
-            resources.displayMetrics
-        )
+    private suspend fun mover_adelante(carro:ImageView){
+        withContext(Dispatchers.Main){
 
-        val animator = ObjectAnimator.ofFloat(carro, "translationY", carro.translationY, carro.translationY - distanceInPixels)
-        animator.duration = 1000 // Establecer la duración de la animación
-        animator.start()
+            val animator = ObjectAnimator.ofFloat(carro, "translationY", carro.translationY, carro.translationY - 90.dpToPx())
+            animator.duration = 1000 // Establecer la duración de la animación
+            animator.start()
+
+            delay(1000)
+        }
     }
+
+
 
 
 }

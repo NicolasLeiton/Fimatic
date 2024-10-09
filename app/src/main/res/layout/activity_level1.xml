@@ -33,18 +33,17 @@
         android:layout_height="64dp"
         android:layout_weight="1"
         android:background="@color/back_color2"
+        android:contentDescription="Boton ir atras"
         android:onClick="ir_atras"
         android:src="@drawable/atras2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Boton ir atras"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/Fragment_bloques"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
