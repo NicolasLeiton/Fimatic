@@ -16,6 +16,7 @@
         android:layout_marginTop="28dp"
         android:layout_weight="1"
         android:background="@color/back_color"
+        android:contentDescription="@string/ir_atras_txt"
         android:onClick="ir_home"
         android:src="@drawable/atras2"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +60,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:importantForAccessibility="no"
                 app:srcCompat="@drawable/logo" />
 
             <Button
@@ -116,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/back_color"
+                android:contentDescription="@string/abajo_desc"
                 android:onClick="ir_abajo"
                 app:srcCompat="@drawable/abajo" />
         </LinearLayout>

@@ -13,9 +13,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
-import android.util.TypedValue
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import kotlinx.coroutines.*
 
@@ -49,7 +46,7 @@ class Level1 : AppCompatActivity() {
         // Observar los cambios en los datos
         viewModel.sharedData.observe(this) { data ->
             GlobalScope.launch {
-                if (playing==false){
+                if (!playing){
                     playing = true
                     mover_carro(data, carro)
                 }

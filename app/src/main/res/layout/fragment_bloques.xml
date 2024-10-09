@@ -92,6 +92,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/back_color"
+                    android:contentDescription="@string/Start_Desc"
                     android:scaleType="fitCenter"
                     android:src="@drawable/iniciar" />
 
@@ -100,7 +101,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:contentDescription="@string/scroll_desc"
                 android:fillViewport="true">
 
                 <LinearLayout
@@ -115,6 +116,7 @@
                         android:id="@+id/imageView5"
                         android:layout_width="120dp"
                         android:layout_height="60dp"
+                        android:contentDescription="@string/inicio_desc"
                         android:src="@drawable/green_block" />
                 </LinearLayout>
             </ScrollView>

@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/back_color"
+                android:contentDescription="@string/ir_atras_txt"
                 android:onClick="ir_atras"
                 android:rotation="180"
                 app:srcCompat="@drawable/abajo" />
@@ -47,6 +48,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="30dp"
+                android:importantForAccessibility="no"
                 app:srcCompat="@drawable/logo" />
 
             <Button
