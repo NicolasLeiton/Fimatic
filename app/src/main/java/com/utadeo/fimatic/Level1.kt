@@ -41,6 +41,8 @@ class Level1 : AppCompatActivity() {
         val carro: ImageView = findViewById(R.id.carImg)
         val piso_inicial:ImageView = findViewById(R.id.Piso_1)
 
+        val claseCarro: Carro = Carro(carro, this)
+
 
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
         // Observar los cambios en los datos

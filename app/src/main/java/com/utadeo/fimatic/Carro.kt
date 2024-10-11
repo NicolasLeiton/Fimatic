@@ -1,23 +1,23 @@
 package com.utadeo.fimatic
 
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.util.Log
 import android.widget.ImageView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class Carro(carro: ImageView) {
+class Carro(private val carImg: ImageView, private val context: Context) {
 
     private var playing = false
     private var animating = false
-    private var carImg:ImageView = carro
 
     fun reinicar(inico: ImageView){
         val location = IntArray(2)
         inico.getLocationOnScreen(location)
-        location[1]+=9
-        location[0]+=8
+        location[1]+=9.dpToPx()
+        location[0]+=8.dpToPx()
 
         // Mover el carro a la casilla original
         carImg.x = location[0].toFloat()
@@ -42,12 +42,14 @@ class Carro(carro: ImageView) {
     private suspend fun mover_adelante(){
         withContext(Dispatchers.Main){
 
-            val animator = ObjectAnimator.ofFloat(carImg, "translationY", carImg.translationY, carImg.translationY - 90)
+            val animator = ObjectAnimator.ofFloat(carImg, "translationY", carImg.translationY, carImg.translationY - 90.dpToPx())
             animator.duration = 1000 // Establecer la duración de la animación
             animator.start()
 
             delay(1000)
         }
     }
-
+    fun Int.dpToPx(): Int {
+        return (this * context.resources.displayMetrics.density).toInt()
+    }
 }
