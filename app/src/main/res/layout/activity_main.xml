@@ -58,13 +58,13 @@
 
         <Button
             android:id="@+id/bot_config"
-            android:layout_width="210dp"
+            android:layout_width="245dp"
             android:layout_height="50dp"
             android:background="@drawable/default_button"
             android:fontFamily="@font/iceberg"
             android:text="Ajustes"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -74,13 +74,13 @@
 
         <Button
             android:id="@+id/bot_salir"
-            android:layout_width="210dp"
+            android:layout_width="245dp"
             android:layout_height="50dp"
             android:background="@drawable/default_button"
             android:fontFamily="@font/iceberg"
             android:text="Salir"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
     </LinearLayout>
 
