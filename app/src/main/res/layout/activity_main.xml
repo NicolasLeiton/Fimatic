@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/iceberg"
-            android:text="FIMATIC"
+            android:text="@string/fimatic"
             android:textColor="@color/white"
             android:textSize="52sp" />
 
@@ -48,7 +48,7 @@
             android:background="@drawable/default_button"
             android:fontFamily="@font/iceberg"
             android:onClick="ir_niveles"
-            android:text="Empezar"
+            android:text="@string/empezar"
             android:textColor="@color/black"
             android:textSize="28sp" />
 
@@ -62,7 +62,7 @@
             android:layout_height="50dp"
             android:background="@drawable/default_button"
             android:fontFamily="@font/iceberg"
-            android:text="Ajustes"
+            android:text="@string/ajustes"
             android:textColor="@color/black"
             android:textSize="28sp" />
 
@@ -78,7 +78,7 @@
             android:layout_height="50dp"
             android:background="@drawable/default_button"
             android:fontFamily="@font/iceberg"
-            android:text="Salir"
+            android:text="@string/salir"
             android:textColor="@color/black"
             android:textSize="28sp" />
 
@@ -91,6 +91,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/iceberg"
         android:text="@string/cred_txt"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

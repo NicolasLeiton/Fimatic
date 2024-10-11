@@ -6,4 +6,15 @@
     <string name="inicio_desc">Bloque que marca el inicio de la secuencia</string>
     <string name="cred_txt">Creado por: Nicolás Leiton</string>
     <string name="abajo_desc">Boton para ir a la siguiente seccion de niveles</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="empezar">Empezar</string>
+    <string name="salir">Salir</string>
+    <string name="fimatic">FIMATIC</string>
+    <string name="niveles">Niveles</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
 </resources>

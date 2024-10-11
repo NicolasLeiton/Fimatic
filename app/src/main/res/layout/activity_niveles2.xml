@@ -66,7 +66,7 @@
                     android:backgroundTint="@color/cyan"
                     android:backgroundTintMode="screen"
                     android:fontFamily="@font/iceberg"
-                    android:text="4"
+                    android:text="@string/_4"
                     android:textColor="@color/black"
                     android:textSize="65sp" />
 
@@ -85,7 +85,7 @@
                     android:backgroundTint="@color/cyan_2"
                     android:backgroundTintMode="screen"
                     android:fontFamily="@font/iceberg"
-                    android:text="5"
+                    android:text="@string/_5"
                     android:textColor="@color/black"
                     android:textSize="65sp" />
 
@@ -104,7 +104,7 @@
                     android:backgroundTint="@color/cyan_3"
                     android:backgroundTintMode="screen"
                     android:fontFamily="@font/iceberg"
-                    android:text="6"
+                    android:text="@string/_6"
                     android:textColor="@color/black"
                     android:textSize="65sp" />
 
