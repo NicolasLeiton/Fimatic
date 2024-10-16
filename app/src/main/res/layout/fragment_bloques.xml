@@ -8,7 +8,6 @@
     android:background="@color/back_color"
     tools:context=".Bloques">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <View
         android:layout_width="match_parent"
@@ -88,7 +87,7 @@
                     android:id="@+id/Start_Button"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/back_color"

@@ -10,33 +10,28 @@ import kotlinx.coroutines.withContext
 
 class Carro(private val carImg: ImageView, private val context: Context) {
 
-    private var playing = false
-    private var animating = false
-
-    fun reinicar(inico: ImageView){
-        val location = IntArray(2)
+    fun reinicar(inico: ImageView): Boolean {
+        var location = IntArray(2)
         inico.getLocationOnScreen(location)
-        location[1]+=9.dpToPx()
+        location[1]+=9.dpToPx()//Ajustar al centro
         location[0]+=8.dpToPx()
 
         // Mover el carro a la casilla original
         carImg.x = location[0].toFloat()
         carImg.y = location[1].toFloat()
-        playing = false
+        return false
     }
 
-    suspend fun mover_carro(instrucciones:String){
-        animating = true
-        val list_inst = instrucciones.split(" ")
+    suspend fun mover_carro(instrucciones:String): Boolean {
+        val list_inst = instrucciones.split(" ") //Convertir el string en una lista
 
         for((i, paso) in list_inst.withIndex()){
             Log.d("Level1", "Paso numero ${i}: ${paso}")
             if(paso=="Adelante"){
                 mover_adelante()
-
             }
         }
-        animating=false
+        return false
 
     }
     private suspend fun mover_adelante(){

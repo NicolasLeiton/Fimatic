@@ -1,6 +1,5 @@
 package com.utadeo.fimatic
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +20,7 @@ class Level1 : AppCompatActivity() {
     private lateinit var viewModel: SharedViewModel
     private var playing = false
     private var animating = false
+    private val path = listOf("Adelante", "Adelante")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +38,10 @@ class Level1 : AppCompatActivity() {
             add<Bloques>(R.id.Fragment_bloques, args = bundle)
         }
 
-        val carro: ImageView = findViewById(R.id.carImg)
+        val car: ImageView = findViewById(R.id.carImg)
         val piso_inicial:ImageView = findViewById(R.id.Piso_1)
 
-        val claseCarro: Carro = Carro(carro, this)
+        val claseCarro = Carro(car, this)
 
 
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
@@ -49,11 +49,11 @@ class Level1 : AppCompatActivity() {
         viewModel.sharedData.observe(this) { data ->
             GlobalScope.launch {
                 if (!playing){
-                    playing = true
-                    mover_carro(data, carro)
+                    playing = true; animating = true
+                    animating = claseCarro.mover_carro(data)
                 }
                 else if(animating==false){
-                    reinicar(carro, piso_inicial)
+                    playing = claseCarro.reinicar(piso_inicial)
                 }
 
 
@@ -70,45 +70,6 @@ class Level1 : AppCompatActivity() {
         val home= Intent(this, Niveles::class.java)
         startActivity(home)
     }
-
-    fun reinicar(carro:ImageView, inico:ImageView){
-        val location = IntArray(2)
-        inico.getLocationOnScreen(location)
-        location[1]+=9.dpToPx()
-        location[0]+=8.dpToPx()
-
-        // Mover el carro a la casilla original
-        carro.x = location[0].toFloat()
-        carro.y = location[1].toFloat()
-        playing = false
-    }
-
-    suspend fun mover_carro(instrucciones:String, carro:ImageView){
-        animating = true
-        val list_inst = instrucciones.split(" ")
-
-        for((i, paso) in list_inst.withIndex()){
-            Log.d("Level1", "Paso numero ${i}: ${paso}")
-            if(paso=="Adelante"){
-                mover_adelante(carro)
-
-            }
-        }
-        animating=false
-
-    }
-    private suspend fun mover_adelante(carro:ImageView){
-        withContext(Dispatchers.Main){
-
-            val animator = ObjectAnimator.ofFloat(carro, "translationY", carro.translationY, carro.translationY - 90.dpToPx())
-            animator.duration = 1000 // Establecer la duración de la animación
-            animator.start()
-
-            delay(1000)
-        }
-    }
-
-
 
 
 }
