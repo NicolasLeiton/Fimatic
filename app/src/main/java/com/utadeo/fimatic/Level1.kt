@@ -1,8 +1,8 @@
 package com.utadeo.fimatic
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +13,7 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import android.widget.ImageView
+import android.widget.TextView
 import kotlinx.coroutines.*
 
 class Level1 : AppCompatActivity() {
@@ -22,6 +23,7 @@ class Level1 : AppCompatActivity() {
     private var animating = false
     private val path = listOf("Adelante", "Adelante")
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,8 +42,9 @@ class Level1 : AppCompatActivity() {
 
         val car: ImageView = findViewById(R.id.carImg)
         val piso_inicial:ImageView = findViewById(R.id.Piso_1)
+        val text_out:TextView = findViewById(R.id.text_result)
 
-        val claseCarro = Carro(car, this)
+        val claseCarro = Carro(car, this, text_out)
 
 
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
@@ -50,10 +53,11 @@ class Level1 : AppCompatActivity() {
             GlobalScope.launch {
                 if (!playing){
                     playing = true; animating = true
-                    animating = claseCarro.mover_carro(data)
+                    animating = claseCarro.mover_carro(data, path)
                 }
                 else if(animating==false){
                     playing = claseCarro.reinicar(piso_inicial)
+
                 }
 
 
@@ -62,9 +66,6 @@ class Level1 : AppCompatActivity() {
         }
     }
 
-    fun Int.dpToPx(): Int {
-        return (this * resources.displayMetrics.density).toInt()
-    }
 
     fun ir_atras(view: View){
         val home= Intent(this, Niveles::class.java)

@@ -4,35 +4,63 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class Carro(private val carImg: ImageView, private val context: Context) {
+class Carro(private val carImg: ImageView, private val context: Context, private val salida: TextView) {
 
-    fun reinicar(inico: ImageView): Boolean {
+    suspend fun reinicar(inico: ImageView): Boolean {
         var location = IntArray(2)
         inico.getLocationOnScreen(location)
         location[1]+=9.dpToPx()//Ajustar al centro
         location[0]+=8.dpToPx()
+        withContext(Dispatchers.Main) {
+            // Mover el carro a la casilla original
+            carImg.x = location[0].toFloat()
+            carImg.y = location[1].toFloat()
 
-        // Mover el carro a la casilla original
-        carImg.x = location[0].toFloat()
-        carImg.y = location[1].toFloat()
+            salida.text = ""
+        }
+
         return false
     }
 
-    suspend fun mover_carro(instrucciones:String): Boolean {
+    suspend fun mover_carro(instrucciones:String, camino:List<String>): Boolean {
         val list_inst = instrucciones.split(" ") //Convertir el string en una lista
-
+        var salida_str:String =""
         for((i, paso) in list_inst.withIndex()){
-            Log.d("Level1", "Paso numero ${i}: ${paso}")
+
+            //Movimiento
             if(paso=="Adelante"){
                 mover_adelante()
             }
+
+            //Verificacion
+            if(i+1>camino.size) {
+                salida_str = "Superaste el límite de pasos :("
+                break
+            }
+            if (paso==camino[i]){
+                continue
+            }
+            else{
+                salida_str = "Nop, te equivocaste en tu bloque número ${i+1} :("
+                break
+            }
+
+        }
+        if (list_inst.size<camino.size){
+            salida_str = "Casi.. te falta poco"
+        }
+        else if(salida_str==""){
+            salida_str = "¡¡Muy bien, lo conseguiste!!"
+        }
+        withContext(Dispatchers.Main) {
+            salida.text = salida_str
         }
         return false
-
     }
     private suspend fun mover_adelante(){
         withContext(Dispatchers.Main){
@@ -46,5 +74,6 @@ class Carro(private val carImg: ImageView, private val context: Context) {
     }
     fun Int.dpToPx(): Int {
         return (this * context.resources.displayMetrics.density).toInt()
+
     }
 }
