@@ -19,16 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/piso" />
 
-    <ImageView
-        android:id="@+id/Piso_3"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toTopOf="@+id/Piso_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/piso" />
-
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="64dp"
@@ -50,6 +40,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout="@layout/fragment_bloques" />
+
+    <ImageView
+        android:id="@+id/trophy_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_result"
+        app:srcCompat="@drawable/trophy" />
+
+    <ImageView
+        android:id="@+id/Piso_3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toTopOf="@+id/Piso_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/piso" />
 
     <ImageView
         android:id="@+id/Piso_2"
@@ -99,4 +110,5 @@
         app:layout_constraintVertical_bias="0.085"
         tools:text="Retroalimentacion"
         tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

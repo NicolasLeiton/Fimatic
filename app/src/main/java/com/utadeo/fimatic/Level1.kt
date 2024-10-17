@@ -43,6 +43,7 @@ class Level1 : AppCompatActivity() {
         val car: ImageView = findViewById(R.id.carImg)
         val piso_inicial:ImageView = findViewById(R.id.Piso_1)
         val text_out:TextView = findViewById(R.id.text_result)
+        val trophy:ImageView = findViewById(R.id.trophy_img)
 
         val claseCarro = Carro(car, this, text_out)
 
@@ -60,9 +61,15 @@ class Level1 : AppCompatActivity() {
 
                 }
 
-
-
+                if (text_out.text == "¡¡Muy bien, lo conseguiste!!"){
+                    withContext(Dispatchers.Main) {
+                        trophy.visibility = View.VISIBLE
+                    }
+                }
             }
+
+
+
         }
     }
 
@@ -71,6 +78,7 @@ class Level1 : AppCompatActivity() {
         val home= Intent(this, Niveles::class.java)
         startActivity(home)
     }
+
 
 
 }
