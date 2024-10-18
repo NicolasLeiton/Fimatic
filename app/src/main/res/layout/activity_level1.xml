@@ -35,7 +35,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/Fragment_bloques"
         android:layout_width="fill_parent"
-        android:layout_height="350dp"
+        android:layout_height="320dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,10 +45,11 @@
         android:id="@+id/trophy_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginTop="12dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toEndOf="@+id/Piso_3"
         app:layout_constraintTop_toBottomOf="@+id/text_result"
         app:srcCompat="@drawable/trophy" />
 
@@ -103,11 +104,10 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/Piso_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085"
         tools:text="Retroalimentacion"
         tools:visibility="visible" />
 

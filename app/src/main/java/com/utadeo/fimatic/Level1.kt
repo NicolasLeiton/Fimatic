@@ -45,7 +45,7 @@ class Level1 : AppCompatActivity() {
         val text_out:TextView = findViewById(R.id.text_result)
         val trophy:ImageView = findViewById(R.id.trophy_img)
 
-        val claseCarro = Carro(car, this, text_out)
+        val claseCarro = Carro(car, this, text_out, trophy)
 
 
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
@@ -59,12 +59,6 @@ class Level1 : AppCompatActivity() {
                 else if(animating==false){
                     playing = claseCarro.reinicar(piso_inicial)
 
-                }
-
-                if (text_out.text == "¡¡Muy bien, lo conseguiste!!"){
-                    withContext(Dispatchers.Main) {
-                        trophy.visibility = View.VISIBLE
-                    }
                 }
             }
 

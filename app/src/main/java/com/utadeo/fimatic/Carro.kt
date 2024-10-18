@@ -3,13 +3,14 @@ package com.utadeo.fimatic
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class Carro(private val carImg: ImageView, private val context: Context, private val salida: TextView) {
+class Carro(private val carImg: ImageView, private val context: Context, private val salida: TextView, private val trofeo: ImageView) {
 
     suspend fun reinicar(inico: ImageView): Boolean {
         var location = IntArray(2)
@@ -22,6 +23,7 @@ class Carro(private val carImg: ImageView, private val context: Context, private
             carImg.y = location[1].toFloat()
 
             salida.text = ""
+            trofeo.visibility = View.INVISIBLE
         }
 
         return false
@@ -56,6 +58,9 @@ class Carro(private val carImg: ImageView, private val context: Context, private
         }
         else if(salida_str==""){
             salida_str = "¡¡Muy bien, lo conseguiste!!"
+            withContext(Dispatchers.Main) {
+                trofeo.visibility = View.VISIBLE
+            }
         }
         withContext(Dispatchers.Main) {
             salida.text = salida_str
