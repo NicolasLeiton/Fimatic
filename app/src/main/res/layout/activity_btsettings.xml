@@ -8,6 +8,20 @@
     android:background="@color/back_color"
     tools:context=".Settings">
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:layout_weight="1"
+        android:background="@color/back_color"
+        android:contentDescription="@string/ir_atras_txt"
+        android:onClick="ir_home"
+        android:src="@drawable/atras2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="409dp"
         android:layout_height="729dp"

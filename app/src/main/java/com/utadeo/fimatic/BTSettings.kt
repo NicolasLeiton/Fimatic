@@ -36,23 +36,7 @@ class BTSettings : AppCompatActivity() {
     var AddressDevices: ArrayAdapter<String>? = null
     var NameDevices: ArrayAdapter<String>? = null
     private val REQUEST_BLUETOOTH_PERMISSION = 1
-
-
-    companion object {
-        var myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
-        private var bluetoothSocket: BluetoothSocket? = null
-
-        var isConnected: Boolean = false
-        lateinit var address: String
-    }
-
-
-
-
-
-
-    //private lateinit var bluetoothAdapter: BluetoothAdapter
-
+    lateinit var address: String
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,8 +108,6 @@ class BTSettings : AppCompatActivity() {
                         .show()
                 }
 
-
-
             }
 
             else {
@@ -133,6 +115,8 @@ class BTSettings : AppCompatActivity() {
                 devices_BT.visibility = View.INVISIBLE
                 spinnerDevices.visibility = View.INVISIBLE
                 connect_BT.visibility = View.INVISIBLE
+
+                BluetoothController.disconnect()
 
                 if (!BtAdapter.isEnabled) {
                 //Si ya está desactivado
@@ -171,19 +155,28 @@ class BTSettings : AppCompatActivity() {
 
         connect_BT.setOnClickListener {
             try {
-                if (bluetoothSocket == null || !isConnected) {
+                if (!BluetoothController.isConnected()) {
                     val IntValSpin = spinnerDevices.selectedItemPosition
                     address = AddressDevices!!.getItem(IntValSpin).toString()
 
                     // Cancel discovery because it otherwise slows down the connection.
                     BtAdapter?.cancelDiscovery()
-                    val device: BluetoothDevice = BtAdapter.getRemoteDevice(address)
-                    bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(myUUID)
-                    bluetoothSocket!!.connect()
+
+                    if (BluetoothController.connect(address)){
+                        Toast.makeText(this, "CONEXION EXITOSA", Toast.LENGTH_LONG).show()
+                        Log.i("Settings", "CONEXION EXITOSA")
+                    }
+                    else{
+                        Toast.makeText(this, "ERROR DE CONEXION", Toast.LENGTH_LONG).show()
+                        Log.i("Settings", "ERROR DE CONEXION")
+                    }
+
+                    //val device: BluetoothDevice = BtAdapter.getRemoteDevice(address)
+                    //bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(myUUID)
+                    //bluetoothSocket!!.connect()
                 }
 
-                Toast.makeText(this, "CONEXION EXITOSA", Toast.LENGTH_LONG).show()
-                Log.i("Settings", "CONEXION EXITOSA")
+
             } catch (e: IOException) {
                 //connectSuccess = false
                 e.printStackTrace()
@@ -245,6 +238,12 @@ class BTSettings : AppCompatActivity() {
            return true
         }
 
+    }
+
+
+    fun ir_home(view: View){
+        val home= Intent(this, MainActivity::class.java)
+        startActivity(home)
     }
 
 }
