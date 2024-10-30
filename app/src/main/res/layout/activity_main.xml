@@ -62,6 +62,7 @@
             android:layout_height="50dp"
             android:background="@drawable/default_button"
             android:fontFamily="@font/iceberg"
+            android:onClick="ir_ajustes"
             android:text="@string/ajustes"
             android:textColor="@color/black"
             android:textSize="28sp" />

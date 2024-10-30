@@ -3,6 +3,7 @@ package com.utadeo.fimatic
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -19,10 +20,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val buttonSetiings: Button = findViewById(R.id.bot_config)
+
+        buttonSetiings.setOnClickListener {
+
+            val intent = Intent(this, BTSettings::class.java)
+            startActivity(intent)
+        }
     }
 
     fun ir_niveles(view: View){
         val sig= Intent(this, Niveles::class.java)
         startActivity(sig)
     }
+
+
 }

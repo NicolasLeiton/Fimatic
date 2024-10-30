@@ -41,17 +41,17 @@
 
         <Switch
             android:id="@+id/Blout_switch"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="48dp"
             android:checked="false"
             android:elegantTextHeight="true"
             android:fontFamily="@font/iceberg"
             android:gravity="center"
             android:scrollbarSize="10dp"
-            android:shadowColor="@color/white"
-            android:text="Switch"
+            android:text="@string/encender_bluetooth"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Button
             android:id="@+id/devices_buttom"
@@ -63,12 +63,28 @@
             android:fontFamily="@font/iceberg"
             android:text="Dispositivos BT"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="invisible" />
 
         <Spinner
             android:id="@+id/Devices_spinner"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="@color/purpura" />
+            android:background="@color/purpura"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/connect_bt"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/default_button"
+            android:fontFamily="@font/iceberg"
+            android:text="Conectar"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:visibility="invisible" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
