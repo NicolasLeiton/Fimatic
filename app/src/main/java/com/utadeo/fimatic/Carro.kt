@@ -26,6 +26,10 @@ class Carro(private val carImg: ImageView, private val context: Context, private
             trofeo.visibility = View.INVISIBLE
         }
 
+        if (BluetoothController.isConnected()){
+            BluetoothController.sendData("S")
+        }
+
         return false
     }
 
@@ -36,7 +40,15 @@ class Carro(private val carImg: ImageView, private val context: Context, private
 
             //Movimiento
             if(paso=="Adelante"){
+                if (BluetoothController.isConnected()){
+                    BluetoothController.sendData("A")
+                }
                 mover_adelante()
+            }
+            else if (paso=="Derecha"){
+                if (BluetoothController.isConnected()){
+                    BluetoothController.sendData("R")
+                }
             }
 
             //Verificacion
@@ -61,9 +73,17 @@ class Carro(private val carImg: ImageView, private val context: Context, private
             withContext(Dispatchers.Main) {
                 trofeo.visibility = View.VISIBLE
             }
+            if (BluetoothController.isConnected()){
+                BluetoothController.sendData("S")
+                BluetoothController.sendData("C")
+            }
         }
         withContext(Dispatchers.Main) {
             salida.text = salida_str
+            if (salida_str!= "¡¡Muy bien, lo conseguiste!!" && BluetoothController.isConnected()){
+                BluetoothController.sendData("S")
+                BluetoothController.sendData("E")
+            }
         }
         return false
     }

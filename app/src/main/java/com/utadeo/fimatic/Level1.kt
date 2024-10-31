@@ -3,6 +3,7 @@ package com.utadeo.fimatic
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +35,7 @@ class Level1 : AppCompatActivity() {
             insets
         }
 
-        val bundle = bundleOf(ARG_PARAM1 to "HOLA", ARG_PARAM2 to "1")
+        val bundle = bundleOf(ARG_PARAM1 to "HOLA", ARG_PARAM2 to "2")
         supportFragmentManager.commit{
             setReorderingAllowed(true)
             add<Bloques>(R.id.Fragment_bloques, args = bundle)
@@ -46,6 +47,14 @@ class Level1 : AppCompatActivity() {
         val trophy:ImageView = findViewById(R.id.trophy_img)
 
         val claseCarro = Carro(car, this, text_out, trophy)
+
+
+        if (BluetoothController.isConnected()){
+            Log.i("Level1", "EL BT ESTA CONECTADO")
+        }
+        else{
+            Log.i("Level1", "EL BT NO ESTA CONECTADO")
+        }
 
 
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
