@@ -22,11 +22,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         val buttonSetiings: Button = findViewById(R.id.bot_config)
+        val buttonExit: Button = findViewById(R.id.bot_salir)
 
         buttonSetiings.setOnClickListener {
-
             val intent = Intent(this, BTSettings::class.java)
             startActivity(intent)
+        }
+        buttonExit.setOnClickListener {
+            finish()
         }
     }
 

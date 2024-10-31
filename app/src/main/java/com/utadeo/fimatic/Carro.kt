@@ -21,6 +21,8 @@ class Carro(private val carImg: ImageView, private val context: Context, private
             // Mover el carro a la casilla original
             carImg.x = location[0].toFloat()
             carImg.y = location[1].toFloat()
+            //Rotacion por defecto
+            carImg.rotation = 0f
 
             salida.text = ""
             trofeo.visibility = View.INVISIBLE
@@ -49,6 +51,7 @@ class Carro(private val carImg: ImageView, private val context: Context, private
                 if (BluetoothController.isConnected()){
                     BluetoothController.sendData("R")
                 }
+                mover_derecha()
             }
 
             //Verificacion
@@ -97,6 +100,18 @@ class Carro(private val carImg: ImageView, private val context: Context, private
             delay(1000)
         }
     }
+
+    private suspend fun mover_derecha(){
+        withContext(Dispatchers.Main){
+
+            val animator = ObjectAnimator.ofFloat(carImg, "rotation", carImg.rotation + 90f)
+            animator.duration = 800 // Duración de la animación en milisegundos
+            animator.start() // Iniciar la animación
+
+            delay(800)
+        }
+    }
+
     fun Int.dpToPx(): Int {
         return (this * context.resources.displayMetrics.density).toInt()
 
