@@ -239,8 +239,7 @@ class BTSettings : AppCompatActivity() {
 
 
     fun ir_home(view: View){
-        val home= Intent(this, MainActivity::class.java)
-        startActivity(home)
+        finish()
     }
 
 }
