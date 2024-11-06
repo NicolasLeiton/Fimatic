@@ -1,5 +1,6 @@
 package com.utadeo.fimatic
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipDescription
 import android.os.Bundle
@@ -21,7 +22,7 @@ const val ARG_PARAM2 = "param2"
 class Bloques : Fragment() {
 
     private var name: String? = null
-    private var num_bloques: String? = null
+    private var num_bloques: Int? = null
 
     private var list_blocks : MutableMap<Int,String > = mutableMapOf()
     private var id_count:Int = 0
@@ -33,7 +34,7 @@ class Bloques : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             name = it.getString(ARG_PARAM1)
-            num_bloques = it.getString(ARG_PARAM2)
+            num_bloques = it.getInt(ARG_PARAM2)
         }
 
 
@@ -48,6 +49,7 @@ class Bloques : Fragment() {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -69,14 +71,20 @@ class Bloques : Fragment() {
 
         // Establecer la escucha de arrastre para el área de apilado
         stackArea.setOnDragListener(DragListener())
-        if (num_bloques=="2"){
-            val block2: ImageView = view.findViewById(R.id.Img_rightBlock)
-            block2.setVisibility(View.VISIBLE)
-            block2.setOnTouchListener(TouchListener())
-        }
+
         // Habilitar arrastrar para cada bloque
         block1.setOnTouchListener(TouchListener())
 
+        if (num_bloques!! >=2){ //Verificar cuantos bloques necesita la activity
+            val block2: ImageView = view.findViewById(R.id.Img_rightBlock)
+            block2.visibility = View.VISIBLE
+            block2.setOnTouchListener(TouchListener())
+        }
+        if (num_bloques!! >=3){
+            val block3: ImageView = view.findViewById(R.id.Img_leftBlock)
+            block3.visibility = View.VISIBLE
+            block3.setOnTouchListener(TouchListener())
+        }
     }
 
     // Listener para manejar el evento de arrastre cuando se toca el bloque

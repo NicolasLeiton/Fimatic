@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/iceberg"
-                android:text="Bloques"
+                android:text="@string/bloques"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
 
@@ -41,7 +41,7 @@
                 android:id="@+id/Img_whiteBlock"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                android:contentDescription="Adelante"
+                android:contentDescription="@string/adelante"
                 android:src="@drawable/white_block" />
 
             <ImageView
@@ -49,9 +49,20 @@
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="Derecha"
+                android:contentDescription="@string/derecha"
                 android:src="@drawable/yellow_block"
-                android:visibility="gone" />
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/Img_leftBlock"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/izquierda"
+                android:src="@drawable/blue_block"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
@@ -79,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/iceberg"
-                    android:text="Tu lógica"
+                    android:text="@string/tu_logica"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 

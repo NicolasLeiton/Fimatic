@@ -13,14 +13,12 @@ import kotlinx.coroutines.withContext
 class Carro(private val carImg: ImageView, private val context: Context, private val salida: TextView, private val trofeo: ImageView) {
 
     suspend fun reinicar(inico: ImageView): Boolean {
-        var location = IntArray(2)
+        val location = IntArray(2)
         inico.getLocationOnScreen(location)
-        location[1]+=9.dpToPx()//Ajustar al centro
-        location[0]+=8.dpToPx()
         withContext(Dispatchers.Main) {
             // Mover el carro a la casilla original
-            carImg.x = location[0].toFloat()
-            carImg.y = location[1].toFloat()
+            carImg.x = location[0].toFloat() + 9.dpToPx()
+            carImg.y = location[1].toFloat() + 8.dpToPx()
             //Rotacion por defecto
             carImg.rotation = 0f
 
@@ -37,21 +35,18 @@ class Carro(private val carImg: ImageView, private val context: Context, private
 
     suspend fun mover_carro(instrucciones:String, camino:List<String>): Boolean {
         val list_inst = instrucciones.split(" ") //Convertir el string en una lista
-        var salida_str:String =""
+        var salida_str = ""
         for((i, paso) in list_inst.withIndex()){
 
             //Movimiento
             if(paso=="Adelante"){
-                if (BluetoothController.isConnected()){
-                    BluetoothController.sendData("A")
-                }
                 mover_adelante()
             }
             else if (paso=="Derecha"){
-                if (BluetoothController.isConnected()){
-                    BluetoothController.sendData("R")
-                }
                 mover_derecha()
+            }
+            else if (paso=="Izquierda"){
+                mover_izquierda()
             }
 
             //Verificacion
@@ -91,29 +86,64 @@ class Carro(private val carImg: ImageView, private val context: Context, private
         return false
     }
     private suspend fun mover_adelante(){
-        withContext(Dispatchers.Main){
+        if (BluetoothController.isConnected()){
+            //Si puede le envia la orden al carro
+            BluetoothController.sendData("A")
+        }
+        val direction = (carImg.rotation % 360 + 360) % 360 // Aseguramos que este de 0 a 360
+        Log.i("Carro", "Esta en $direction grados")
 
-            val animator = ObjectAnimator.ofFloat(carImg, "translationY", carImg.translationY, carImg.translationY - 90.dpToPx())
-            animator.duration = 1000 // Establecer la duración de la animación
+        //Dependiendo la orintacion del carro la direccion de la animacion cambia
+        val animator:ObjectAnimator = when (direction) {
+            0f -> ObjectAnimator.ofFloat(carImg, "translationY", carImg.translationY, carImg.translationY - 90.dpToPx())
+            90f -> ObjectAnimator.ofFloat(carImg, "translationX", carImg.translationX, carImg.translationX + 90.dpToPx())
+            180f -> ObjectAnimator.ofFloat(carImg, "translationY", carImg.translationY, carImg.translationY + 90.dpToPx())
+            else -> ObjectAnimator.ofFloat(carImg, "translationX", carImg.translationX, carImg.translationX - 90.dpToPx())
+        }
+
+        withContext(Dispatchers.Main){
+            animator.duration = 1200
             animator.start()
 
-            delay(1000)
+            delay(1400)
         }
+
     }
 
     private suspend fun mover_derecha(){
+        if (BluetoothController.isConnected()){
+            //Si puede le envia la orden al carro
+            BluetoothController.sendData("R")
+        }
+
         withContext(Dispatchers.Main){
 
             val animator = ObjectAnimator.ofFloat(carImg, "rotation", carImg.rotation + 90f)
-            animator.duration = 800 // Duración de la animación en milisegundos
+            animator.duration = 900
             animator.start() // Iniciar la animación
 
-            delay(800)
+            delay(1100)
         }
     }
 
-    fun Int.dpToPx(): Int {
-        return (this * context.resources.displayMetrics.density).toInt()
+    private suspend fun mover_izquierda(){
+        if (BluetoothController.isConnected()){
+            //Si puede le envia la orden al carro
+            BluetoothController.sendData("L")
+        }
+
+        withContext(Dispatchers.Main){
+
+            val animator = ObjectAnimator.ofFloat(carImg, "rotation", carImg.rotation - 90f)
+            animator.duration = 850
+            animator.start() // Iniciar la animación
+
+            delay(1050)
+        }
+    }
+
+    fun Int.dpToPx(): Float {
+        return (this * context.resources.displayMetrics.density)
 
     }
 }

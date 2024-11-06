@@ -159,9 +159,6 @@ class BTSettings : AppCompatActivity() {
                     val IntValSpin = spinnerDevices.selectedItemPosition
                     address = AddressDevices!!.getItem(IntValSpin).toString()
 
-                    // Cancel discovery because it otherwise slows down the connection.
-                    BtAdapter?.cancelDiscovery()
-
                     if (BluetoothController.connect(address)){
                         Toast.makeText(this, "CONEXION EXITOSA", Toast.LENGTH_LONG).show()
                         Log.i("Settings", "CONEXION EXITOSA")

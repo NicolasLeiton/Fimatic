@@ -35,7 +35,7 @@ class Level1 : AppCompatActivity() {
             insets
         }
 
-        val bundle = bundleOf(ARG_PARAM1 to "HOLA", ARG_PARAM2 to "2")
+        val bundle = bundleOf(ARG_PARAM1 to "Nivel 1", ARG_PARAM2 to 1)
         supportFragmentManager.commit{
             setReorderingAllowed(true)
             add<Bloques>(R.id.Fragment_bloques, args = bundle)
