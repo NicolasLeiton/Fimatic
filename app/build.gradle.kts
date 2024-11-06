@@ -48,4 +48,5 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation ("com.getkeepsafe.taptargetview:taptargetview:1.13.1")
+    implementation ("androidx.datastore:datastore-preferences-android:1.1.1")
 }

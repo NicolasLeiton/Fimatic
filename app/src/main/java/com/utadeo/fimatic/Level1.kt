@@ -1,9 +1,11 @@
 package com.utadeo.fimatic
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -14,6 +16,10 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 
 class Level1 : AppCompatActivity() {
@@ -38,8 +44,20 @@ class Level1 : AppCompatActivity() {
         val piso_inicial:ImageView = findViewById(R.id.Piso_1)
         val text_out:TextView = findViewById(R.id.text_result)
         val trophy:ImageView = findViewById(R.id.trophy_img)
+        val backButton:ImageButton = findViewById(R.id.imageButton2)
 
         val claseCarro = Carro(car, this, text_out, trophy)
+
+        backButton.setOnClickListener {
+            if (text_out.text == "¡¡Muy bien, lo conseguiste!!"){
+                lifecycleScope.launch(Dispatchers.IO) {
+                    SaveValues()
+
+                }
+            }
+            finish()
+        }
+
 
         val bundle = bundleOf(ARG_PARAM1 to "Level1", ARG_PARAM2 to 1)
         supportFragmentManager.commit{
@@ -70,14 +88,13 @@ class Level1 : AppCompatActivity() {
                 }
             }
 
-
-
         }
     }
 
-
-    fun ir_atras(view: View){
-        finish()
+    private suspend fun SaveValues(){
+        dataStore.edit{pref ->
+            pref[booleanPreferencesKey("Level1")] = true
+        }
     }
 
 
