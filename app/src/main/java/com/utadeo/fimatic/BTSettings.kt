@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
-import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -25,7 +24,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.io.IOException
-import java.util.UUID
 
 const val REQUEST_ENABLE_BT = 1
 
@@ -78,6 +76,7 @@ class BTSettings : AppCompatActivity() {
                 .show()
         }
 
+        // Configurar switch para encender y apagar BT
         turnBT.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 if (checkAndRequestBluetoothPermission()){
@@ -128,6 +127,7 @@ class BTSettings : AppCompatActivity() {
                 }
             }
         }
+
 
         devices_BT.setOnClickListener {
             if (BtAdapter.isEnabled) {
@@ -236,7 +236,6 @@ class BTSettings : AppCompatActivity() {
         }
 
     }
-
 
     fun ir_home(view: View){
         finish()

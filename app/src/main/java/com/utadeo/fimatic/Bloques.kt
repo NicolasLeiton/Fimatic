@@ -56,39 +56,14 @@ class Bloques : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val context = requireActivity() //Contexto de la activity
-        // Referencias a los bloques (imágenes) y al área de apilado
+        // ----------- Referencias a los bloques (imágenes) y al área de apilado -----------
         val block1: ImageView = view.findViewById(R.id.Img_whiteBlock)
         val block2: ImageView = view.findViewById(R.id.Img_rightBlock)
         val block3: ImageView = view.findViewById(R.id.Img_leftBlock)
         val blockinicio: ImageView = view.findViewById(R.id.Img_inicio)
         val startBut: ImageButton = view.findViewById(R.id.Start_Button)
 
-        // Obtener el ViewModel compartido
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-
-        // Actualizar los datos cuando sea necesario
-        startBut.setOnClickListener {
-            viewModel.setData(crear_instrucciones())
-        }
-
-
-        stackArea = view.findViewById(R.id.stackArea)
-
-        // Establecer la escucha de arrastre para el área de apilado
-        stackArea.setOnDragListener(DragListener())
-
-        // Habilitar arrastrar para cada bloque
-        block1.setOnTouchListener(TouchListener())
-
-        if (num_bloques!! >=2){ //Verificar cuantos bloques necesita la activity
-            block2.visibility = View.VISIBLE
-            block2.setOnTouchListener(TouchListener())
-        }
-        if (num_bloques!! >=3){
-            block3.visibility = View.VISIBLE
-            block3.setOnTouchListener(TouchListener())
-        }
-
+        // ----------- Guias al entrar a cada nivel -----------
         if (nivel=="Level1"){
 
             val img_car:ImageView = context.findViewById(R.id.carImg)
@@ -146,12 +121,36 @@ class Bloques : Fragment() {
             )
         }
 
+        // ---------------------- DRAG AND DROP ----------------------
+        stackArea = view.findViewById(R.id.stackArea)
+        // Obtener el ViewModel compartido
+        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+
+        // Actualizar los datos cuando se use el boton de inicio
+        startBut.setOnClickListener {
+            viewModel.setData(crear_instrucciones())
+        }
+        // Establecer la escucha de arrastre para el área de apilado
+        stackArea.setOnDragListener(DragListener())
+
+        // ----------- Habilitar arrastrar para cada bloque -----------
+        block1.setOnTouchListener(TouchListener())
+
+        if (num_bloques!! >=2){ //Verificar cuantos bloques necesita la activity
+            block2.visibility = View.VISIBLE
+            block2.setOnTouchListener(TouchListener())
+        }
+        if (num_bloques!! >=3){
+            block3.visibility = View.VISIBLE
+            block3.setOnTouchListener(TouchListener())
+        }
 
 
     }
 
     // Listener para manejar el evento de arrastre cuando se toca el bloque
     private inner class TouchListener : View.OnTouchListener {
+        @SuppressLint("ClickableViewAccessibility")
         override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
             if (motionEvent?.action == MotionEvent.ACTION_DOWN) {
                 // Crear datos de arrastre
@@ -171,10 +170,8 @@ class Bloques : Fragment() {
         }
     }
 
-    fun Int.dpToPx(): Int {
-        return (this * resources.displayMetrics.density).toInt()
-    }
-    // Listener para manejar el evento de soltar el bloque en el área de apilado
+
+    //Listener para manejar el evento de soltar el bloque en el área de apilado
     private inner class DragListener : View.OnDragListener {
         override fun onDrag(view: View?, event: DragEvent?): Boolean {
             when (event?.action) {
@@ -223,14 +220,20 @@ class Bloques : Fragment() {
             }
         }
     }
+    // ---------------------- FIN DRAG AND DROP ----------------------
 
+    // Funcion que pasa el map a una list para enviarlo a la activity
     fun crear_instrucciones(): String {
-        var instrucciones:String =""
+        var instrucciones =""
         for (i in list_blocks.values){
             instrucciones += i + " "
         }
         instrucciones= instrucciones.dropLast(1)
         return instrucciones
 
+    }
+
+    fun Int.dpToPx(): Int {
+        return (this * resources.displayMetrics.density).toInt()
     }
 }

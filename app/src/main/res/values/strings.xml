@@ -23,4 +23,6 @@
     <string name="izquierda">Izquierda</string>
     <string name="bloques">Bloques</string>
     <string name="tu_logica">Tu lógica</string>
+    <string name="conectar">Conectar</string>
+    <string name="dispositivos_bt">Dispositivos BT</string>
 </resources>
