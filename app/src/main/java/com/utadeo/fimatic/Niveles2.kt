@@ -21,7 +21,6 @@ class Niveles2 : AppCompatActivity() {
     }
 
     fun ir_atras(view: View){
-        val home= Intent(this, Niveles::class.java)
-        startActivity(home)
+        finish()
     }
 }
