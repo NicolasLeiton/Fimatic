@@ -13,6 +13,9 @@ import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetSequence
+import com.getkeepsafe.taptargetview.TapTargetView
 
 
 const val ARG_PARAM1 = "param1"
@@ -20,7 +23,7 @@ const val ARG_PARAM2 = "param2"
 
 class Bloques : Fragment() {
 
-    private var name: String? = null
+    private var nivel: String? = null
     private var num_bloques: Int? = null
 
     private var list_blocks : MutableMap<Int,String > = mutableMapOf()
@@ -32,7 +35,7 @@ class Bloques : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            name = it.getString(ARG_PARAM1)
+            nivel = it.getString(ARG_PARAM1)
             num_bloques = it.getInt(ARG_PARAM2)
         }
 
@@ -52,9 +55,12 @@ class Bloques : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val context = requireActivity() //Contexto de la activity
         // Referencias a los bloques (imágenes) y al área de apilado
         val block1: ImageView = view.findViewById(R.id.Img_whiteBlock)
+        val block2: ImageView = view.findViewById(R.id.Img_rightBlock)
+        val block3: ImageView = view.findViewById(R.id.Img_leftBlock)
+        val blockinicio: ImageView = view.findViewById(R.id.Img_inicio)
         val startBut: ImageButton = view.findViewById(R.id.Start_Button)
 
         // Obtener el ViewModel compartido
@@ -75,15 +81,71 @@ class Bloques : Fragment() {
         block1.setOnTouchListener(TouchListener())
 
         if (num_bloques!! >=2){ //Verificar cuantos bloques necesita la activity
-            val block2: ImageView = view.findViewById(R.id.Img_rightBlock)
             block2.visibility = View.VISIBLE
             block2.setOnTouchListener(TouchListener())
         }
         if (num_bloques!! >=3){
-            val block3: ImageView = view.findViewById(R.id.Img_leftBlock)
             block3.visibility = View.VISIBLE
             block3.setOnTouchListener(TouchListener())
         }
+
+        if (nivel=="Level1"){
+
+            val img_car:ImageView = context.findViewById(R.id.carImg)
+            val img_end:ImageView = context.findViewById(R.id.img_destino)
+            TapTargetSequence(context)
+                .targets(
+                    TapTarget.forView(img_car, "Este es tu carrito :)", "Será el vehículo que manejes")
+                        .outerCircleColor(R.color.cyan)  // Color del círculo exterior
+                        .targetCircleColor(R.color.white)       // Color del círculo interior
+                        .titleTextSize(20)                      // Tamaño del texto del título
+                        .descriptionTextSize(18)                // Tamaño del texto de la descripción
+                        .transparentTarget(true)  ,
+
+                    TapTarget.forView(img_end, "Destino", "Tu objetivo sera llevar tu carro hasta este punto")
+                        .outerCircleColor(R.color.cyan_2)
+                        .targetCircleColor(R.color.white)
+                        .titleTextSize(20)
+                        .descriptionTextSize(18)
+                        .transparentTarget(true),
+
+                    TapTarget.forView(block1, "Bloque mover adelante", "Arrastra este bloque hasta la parte de 'Tu lógica' para darle la instrucción al carro")
+                        .outerCircleColor(R.color.cyan)
+                        .targetCircleColor(R.color.purpura)
+                        .titleTextSize(20)
+                        .descriptionTextSize(18)
+                        .transparentTarget(true)  ,
+
+                    TapTarget.forView(blockinicio, "Quitar un bloque", "Para quitar un bloque que hayas agregado, basta con mantenerlo presionado unos segundos")
+                        .outerCircleColor(R.color.cyan_2)
+                        .targetCircleColor(R.color.purpura_3)
+                        .titleTextSize(20)
+                        .descriptionTextSize(18)
+                        .transparentTarget(true)
+                )
+                .start()
+        }
+        else if (nivel=="Level2"){
+            TapTargetView.showFor(context,
+                TapTarget.forView(block2, "Giro a la derecha", "¡Bien ya tienes un nuevo bloque! Tendrás que hacer tu carro girar si quieres llegar al objetivo esta vez :3")
+                .outerCircleColor(R.color.cyan)
+                .targetCircleColor(R.color.white)
+                .titleTextSize(20)
+                .descriptionTextSize(18)
+                .transparentTarget(true)
+            )
+        }
+        else if (nivel=="Level3"){
+            TapTargetView.showFor(context,
+                TapTarget.forView(block3, "Giro a la izquierda", "¡Bien ya puedes girar a la izquierda! \nEso de tener el volante bloqueado me estaba aburriendo UnU...")
+                    .outerCircleColor(R.color.cyan)
+                    .targetCircleColor(R.color.cyan_3)
+                    .titleTextSize(20)
+                    .descriptionTextSize(18)
+                    .transparentTarget(true)
+            )
+        }
+
 
 
     }

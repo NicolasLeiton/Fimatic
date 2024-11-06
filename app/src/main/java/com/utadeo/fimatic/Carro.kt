@@ -64,7 +64,7 @@ class Carro(private val carImg: ImageView, private val context: Context, private
 
         }
         if (list_inst.size<camino.size){
-            salida_str = "Casi.. te falta poco"
+            salida_str = "Vas bien... pero aún te falta un poco"
         }
         else if(salida_str==""){
             salida_str = "¡¡Muy bien, lo conseguiste!!"

@@ -1,7 +1,6 @@
 package com.utadeo.fimatic
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -35,18 +34,18 @@ class Level1 : AppCompatActivity() {
             insets
         }
 
-        val bundle = bundleOf(ARG_PARAM1 to "Nivel 1", ARG_PARAM2 to 1)
-        supportFragmentManager.commit{
-            setReorderingAllowed(true)
-            add<Bloques>(R.id.Fragment_bloques, args = bundle)
-        }
-
         val car: ImageView = findViewById(R.id.carImg)
         val piso_inicial:ImageView = findViewById(R.id.Piso_1)
         val text_out:TextView = findViewById(R.id.text_result)
         val trophy:ImageView = findViewById(R.id.trophy_img)
 
         val claseCarro = Carro(car, this, text_out, trophy)
+
+        val bundle = bundleOf(ARG_PARAM1 to "Level1", ARG_PARAM2 to 1)
+        supportFragmentManager.commit{
+            setReorderingAllowed(true)
+            add<Bloques>(R.id.Fragment_bloques, args = bundle)
+        }
 
 
         if (BluetoothController.isConnected()){

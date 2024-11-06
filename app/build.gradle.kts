@@ -47,4 +47,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("androidx.fragment:fragment-ktx:1.8.3")
+    implementation ("com.getkeepsafe.taptargetview:taptargetview:1.13.1")
 }
