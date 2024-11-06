@@ -31,4 +31,12 @@ class Niveles : AppCompatActivity() {
         val home= Intent(this, Level1::class.java)
         startActivity(home)
     }
+    fun ir_nivel2(view: View){
+        val home= Intent(this, Level2::class.java)
+        startActivity(home)
+    }
+    fun ir_nivel3(view: View){
+        val home= Intent(this, Level3::class.java)
+        startActivity(home)
+    }
 }

@@ -95,6 +95,7 @@
                     android:backgroundTint="@color/purpura_2"
                     android:backgroundTintMode="screen"
                     android:fontFamily="@font/iceberg"
+                    android:onClick="ir_nivel2"
                     android:text="@string/_2"
                     android:textColor="@color/black"
                     android:textSize="65sp" />
@@ -113,6 +114,7 @@
                     android:backgroundTint="@color/purpura_3"
                     android:backgroundTintMode="screen"
                     android:fontFamily="@font/iceberg"
+                    android:onClick="ir_nivel3"
                     android:text="@string/_3"
                     android:textColor="@color/black"
                     android:textSize="65sp" />

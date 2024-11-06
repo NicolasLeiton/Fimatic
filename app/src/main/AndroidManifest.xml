@@ -28,6 +28,12 @@
             android:name=".Level1"
             android:exported="false" />
         <activity
+            android:name=".Level2"
+            android:exported="false" />
+        <activity
+            android:name=".Level3"
+            android:exported="false" />
+        <activity
             android:name=".Niveles2"
             android:exported="false" />
         <activity
