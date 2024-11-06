@@ -7,13 +7,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.*
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import android.util.Log
+
 
 
 const val ARG_PARAM1 = "param1"
@@ -85,6 +84,8 @@ class Bloques : Fragment() {
             block3.visibility = View.VISIBLE
             block3.setOnTouchListener(TouchListener())
         }
+
+
     }
 
     // Listener para manejar el evento de arrastre cuando se toca el bloque
