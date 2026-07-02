@@ -12,7 +12,7 @@ Por otro lado, cabe agregar de que esta aplicación fue creada únicamente por m
 - Arduino/C: IDE y lenguaje usado para la implementación de un dispositivo físico.
 
 ## Capturas de pantalla
-<img width="425" height="945" alt="0" src="https://github.com/user-attachments/assets/cc0220c1-3153-4952-a9be-e30d4d4966c1" />
-<img width="425" height="945" alt="0" src="https://github.com/user-attachments/assets/679c58ef-7a91-4cbe-99f6-ea2dcabc1145" />
-<img width="425" height="945" alt="0" src="https://github.com/user-attachments/assets/413f9ea0-06c2-4293-a4b2-0e65712aea0b" />
-<img width="425" height="945" alt="0" src="https://github.com/user-attachments/assets/5a1de3c2-35e2-400f-a8b2-6e13f69b5dba" />
+<img width="255" height="567" alt="0" src="https://github.com/user-attachments/assets/cc0220c1-3153-4952-a9be-e30d4d4966c1" />
+<img width="255" height="567" alt="0" src="https://github.com/user-attachments/assets/679c58ef-7a91-4cbe-99f6-ea2dcabc1145" />
+<img width="255" height="567" alt="0" src="https://github.com/user-attachments/assets/413f9ea0-06c2-4293-a4b2-0e65712aea0b" />
+<img width="255" height="567" alt="0" src="https://github.com/user-attachments/assets/5a1de3c2-35e2-400f-a8b2-6e13f69b5dba" />
